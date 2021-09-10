@@ -1,12 +1,17 @@
 <template>
     <div class="messages-group">
-        <p class="messages-group__name">My messages</p>
+        <p class="messages-group__name">{{nameOfGroup}}</p>
     </div>
 </template>
 
 <script>
 export default {
     name: "MessagesGroup",
+    props: {
+        nameOfGroup: {
+            type: String,
+        }
+    },
 }
 </script>
 

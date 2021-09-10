@@ -1,7 +1,7 @@
 <template>
     <div class="messages-block">
         <Message
-            v-for="i in 40"
+            v-for="i in 1"
             :key="i"
         />
     </div>
@@ -13,6 +13,11 @@ export default {
     name: "MessagesBlock",
     components: {
         Message,
+    },
+    data() {
+        return {
+            allMessages: localStorage.getItem('messages')
+        }
     }
 }
 </script>
@@ -24,6 +29,6 @@ export default {
     height: 100%;
     overflow-y: scroll;
     padding: 20px;
-    max-height: calc(100% - 150px);
+    max-height: calc(100% - 158px);
 }
 </style>
