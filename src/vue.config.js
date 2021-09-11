@@ -5,5 +5,5 @@ module.exports = {
                 prependData: '@import "@/assets/styles/default.scss"; '
             }
         }
-    }
+    },
 };

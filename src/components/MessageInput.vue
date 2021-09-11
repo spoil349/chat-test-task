@@ -3,25 +3,41 @@
         <textarea
             class="messages-input__textarea"
             type="text"
-            v-model="message"
+            v-model="messageText"
             placeholder="Enter the message"
             ></textarea>
-        <button class="messages-input__button" @click="saveMessage"></button>
+        <button
+            :class="['messages-input__button', {disabled: !messageText}]"
+            @click="saveMessage"
+        ></button>
     </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
     name: "MessageInput",
     data() {
         return {
-            message: null,
+            messageText: null,
         }
     },
+    computed: {
+        ...mapGetters(['activeGroupName']),
+    },
     methods: {
+        ...mapActions(['changeActiveMessages']),
         saveMessage() {
-            localStorage.setItem('1');
-            console.log(localStorage.getItem('1'));
+            let newGroupMessage = this.messageText;
+            let activeGroup = this.activeGroupName;
+            let activeGroupMessages = localStorage.getItem(activeGroup);
+            if (activeGroupMessages) {
+                localStorage.setItem(activeGroup, `${activeGroupMessages}, ${newGroupMessage}`);
+            } else {
+                localStorage.setItem(activeGroup, newGroupMessage);
+            }
+            this.changeActiveMessages(activeGroup);
+            this.messageText = '';
         },
     },
 }
@@ -50,6 +66,7 @@ export default {
         border: none;
         background-color: $white;
         position: relative;
+        cursor: pointer;
         &::after {
             content: '➤';
             position: absolute;
@@ -60,11 +77,10 @@ export default {
             transform: translate(-50%, -50%);
             cursor: pointer;
         }
-        // &:hover {
-        //     &::after {
-        //         color: black;
-        //     }
-        // }
+        &.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
     }
 }
 </style>

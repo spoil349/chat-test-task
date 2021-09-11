@@ -5,7 +5,6 @@
         <MessagesBlock/>
         <MessageInput/>
     </div>
-    <!-- <router-view/> -->
 </template>
 
 <script>
@@ -19,7 +18,7 @@ export default {
         MessagesBlockHeader,
         MessagesBlock,
         MessageInput,
-    }
+    },
 }
 </script>
 

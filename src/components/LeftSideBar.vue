@@ -28,6 +28,7 @@ export default {
     height: 100vh;
     padding: 15px;
     background: $darkGray;
+    overflow: scroll;
 }
 
 </style>

@@ -2,13 +2,6 @@
     <div class="sidebar-main">
         <h2 class="sidebar-main__header">MESSAGES</h2>
         <h3 class="sidebar-main__subheader">history</h3>
-        <MessagesGroup
-            :class="{active: isActive(item)}"
-            v-for="item in groupsNames"
-            :key="item"
-            :nameOfGroup="item"
-            @click="setActive(item)"
-        />
         <button
             class="sidebar-main__button"
             v-if="!addGroupOpened"
@@ -33,11 +26,19 @@
                 Save
             </button>
         </div>
+        <MessagesGroup
+            :class="{active: isActiveGroup(item)}"
+            v-for="item in groupsNames"
+            :key="item"
+            :nameOfGroup="item"
+            @click="setActiveGroup(item)"
+        />
     </div>
 </template>
 
 <script>
 import MessagesGroup from './MessagesGroup.vue'
+import { mapActions } from 'vuex'
 export default {
     name: "LeftSideBarMain",
     components: {
@@ -48,30 +49,36 @@ export default {
             activeItem: null,
             addGroupOpened: false,
             groupName: '',
-            myStorage: localStorage,
-            groupsNames: Object.keys(localStorage),
+            groupsNames: this.groupNamesFilter(localStorage),
         }
     },
     methods: {
-        isActive(i) {
+        isActiveGroup(i) {
             return this.activeItem === i;
         },
-        setActive(i) {
-            this.activeItem = i;
+        setActiveGroup(item) {
+            // console.log('leftSideBar function item typeof: ', typeof item, '   item = ', item)
+            this.activeItem = item;
+            this.changeActiveGroup(item);
+            this.changeActiveMessages(item);
         },
         openAddGroupInput() {
             this.addGroupOpened = true;
         },
+        groupNamesFilter(storage) {
+            return Object.keys(storage).filter(key => key.substring(0, 5) === 'group')
+        },
         addNewGroup() {
             if (this.groupName) {
                 this.addGroupOpened = false;
-                this.myStorage.setItem(this.groupName, '');
-                this.groupsNames = Object.keys(localStorage);
+                localStorage.setItem(`group_${this.groupName}`, '');
+                this.groupsNames = this.groupNamesFilter(localStorage);
                 this.groupName = '';
             }
         },
-        
+        ...mapActions(['changeActiveGroup', 'changeActiveMessages']),
     },
+    // computed: mapGetters(['activeGroupName']),
 }
 </script>
 
@@ -93,12 +100,13 @@ export default {
     }
     &__button {
         width: 100%;
-        padding: 4px 8px;
+        padding: 20px 8px;
         border-radius: 4px;
         background: $lightBlue;
         border: none;
         color: $textGray;
         cursor: pointer;
+        margin-bottom: 16px;
         &:hover {
             background-color: $blue;
             color: $white;
@@ -111,6 +119,7 @@ export default {
     &__add {
         display: flex;
         flex-flow: column nowrap;
+        margin-bottom: 16px;
         &-input {
             padding: 4px 8px;
             border-radius: 4px;

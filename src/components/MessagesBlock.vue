@@ -1,24 +1,25 @@
 <template>
     <div class="messages-block">
         <Message
-            v-for="i in 1"
-            :key="i"
+            v-for="item in 1"
+            :key="item"
         />
     </div>
 </template>
 
 <script>
 import Message from './Message.vue'
+
 export default {
     name: "MessagesBlock",
     components: {
         Message,
     },
-    data() {
-        return {
-            allMessages: localStorage.getItem('messages')
-        }
-    }
+    computed: {
+    },
+    methods: {
+        
+    },
 }
 </script>
 

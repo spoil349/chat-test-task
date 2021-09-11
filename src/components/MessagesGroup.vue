@@ -39,9 +39,15 @@ export default {
         font-weight: 600;
         color: $textGray;
     }
-    &:hover,
-    &.active {
+    &:hover {
         background-color: $blue;
+        &.messages-group::before,
+        .messages-group__name {
+            color: $white;
+        }
+    }
+    &.active {
+        background-color: $darkBlue;
         &.messages-group::before {
             color: $lightBlue;
         }
