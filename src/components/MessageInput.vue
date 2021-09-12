@@ -47,9 +47,6 @@ export default {
         formatDate(date) {
             return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
         },
-        formatMessage(message) {
-            console.log(message);
-        }
     },
 }
 </script>

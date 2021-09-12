@@ -5,7 +5,6 @@
             :key="message"
             :thisMessage="message"
         />
-        <!-- <button @click="log"></button> -->
     </div>
 </template>
 
@@ -20,12 +19,6 @@ export default {
     },
     computed: {
         ...mapGetters(['activeMessages']),
-    },
-    methods: {
-        // log() {
-        //     console.log('this.activeMessages', this.activeMessages)
-        //     console.log('typeof this.activeMessages', typeof this.activeMessages)
-        // }
     },
 }
 </script>

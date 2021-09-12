@@ -24,11 +24,10 @@ export default {
     position: sticky;
     top: 0;
     left: 0;
-    width: 256px;
+    flex: 1 0 256px;
     height: 100vh;
     padding: 15px;
     background: $darkGray;
-    // overflow: scroll;
 }
 
 </style>

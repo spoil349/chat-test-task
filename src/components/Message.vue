@@ -26,7 +26,6 @@ export default {
     computed: {
         ...mapGetters['activeMessages']
     },
-    mounted() {}
 }
 </script>
 

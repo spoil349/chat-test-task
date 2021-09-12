@@ -21,6 +21,7 @@ export default {
 .messages-group {
     padding: 8px 12px 8px 32px;
     border-radius: 5px;
+    border: 1px solid $textGray; 
     position: relative;
     cursor: pointer;
     &:not(:last-child) {
@@ -39,6 +40,9 @@ export default {
         font-size: 13px;
         font-weight: 600;
         color: $textGray;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
     &:hover {
         background-color: $blue;

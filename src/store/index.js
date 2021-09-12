@@ -20,7 +20,6 @@ export default createStore({
     changeActiveMessages(ctx, groupName) {
       let activeMessagesString = localStorage.getItem(groupName).split(',');
       let activeMessages = eval('([' + activeMessagesString + '])');
-      console.log(activeMessages)
       ctx.commit('updateActiveMessages', activeMessages);
     },
   },
