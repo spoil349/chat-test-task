@@ -1,17 +1,18 @@
 <template>
     <div class="messages-group">
-        <p class="messages-group__name">{{nameOfGroup}}</p>
+        <p class="messages-group__name">{{name}}</p>
     </div>
 </template>
 
 <script>
 export default {
     name: "MessagesGroup",
-    props: {
-        nameOfGroup: {
-            type: String,
+    props: ['nameOfGroup'],
+    data() {
+        return {
+            name: this.nameOfGroup.replace('group_', '')
         }
-    },
+    }
 }
 </script>
 

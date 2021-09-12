@@ -28,17 +28,28 @@ export default {
     methods: {
         ...mapActions(['changeActiveMessages']),
         saveMessage() {
-            let newGroupMessage = this.messageText;
+            let newGroupMessage = this.messageText.trim().replace(/(\r\n|\n|\r)/gm," ");
+            if (!newGroupMessage) {
+                this.messageText = '';
+                return
+            }
             let activeGroup = this.activeGroupName;
             let activeGroupMessages = localStorage.getItem(activeGroup);
+            let date = this.formatDate(new Date());
             if (activeGroupMessages) {
-                localStorage.setItem(activeGroup, `${activeGroupMessages}, ${newGroupMessage}`);
+                localStorage.setItem(activeGroup, `${activeGroupMessages}, {message:'${newGroupMessage}', date:'${date}'}`);
             } else {
-                localStorage.setItem(activeGroup, newGroupMessage);
+                localStorage.setItem(activeGroup, `{message:'${newGroupMessage}', date:'${date}'}`);
             }
             this.changeActiveMessages(activeGroup);
             this.messageText = '';
         },
+        formatDate(date) {
+            return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`
+        },
+        formatMessage(message) {
+            console.log(message);
+        }
     },
 }
 </script>

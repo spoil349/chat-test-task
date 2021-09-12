@@ -1,27 +1,32 @@
 <template>
     <div class="message">
         <p class="message__text">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia, debitis quos. Earum consequatur qui, distinctio sint non saepe obcaecati perferendis.
+            {{thisMessage.message}}
         </p>
         <div class="message__bottom">
             <p class="message__bottom-name">
                 David Hill
             </p>
             <p class="message__bottom-date">
-                {{date}}
+                {{thisMessage.date}}
             </p>
         </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     name: "Message",
-    data() {
-        return {
-            date: new Date,
+    props: {
+        thisMessage: {
+            type: Object,
         }
-    }
+    },
+    computed: {
+        ...mapGetters['activeMessages']
+    },
+    mounted() {}
 }
 </script>
 

@@ -57,7 +57,6 @@ export default {
             return this.activeItem === i;
         },
         setActiveGroup(item) {
-            // console.log('leftSideBar function item typeof: ', typeof item, '   item = ', item)
             this.activeItem = item;
             this.changeActiveGroup(item);
             this.changeActiveMessages(item);
@@ -78,7 +77,6 @@ export default {
         },
         ...mapActions(['changeActiveGroup', 'changeActiveMessages']),
     },
-    // computed: mapGetters(['activeGroupName']),
 }
 </script>
 

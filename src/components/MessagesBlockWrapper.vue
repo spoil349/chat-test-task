@@ -2,8 +2,12 @@
 <template>
     <div class="messages-wrapper">
         <MessagesBlockHeader/>
-        <MessagesBlock/>
-        <MessageInput/>
+        <MessagesBlock
+            v-if="activeGroupName"
+        />
+        <MessageInput
+            v-if="activeGroupName"
+        />
     </div>
 </template>
 
@@ -11,6 +15,7 @@
 import MessagesBlockHeader from './MessagesBlockHeader.vue'
 import MessagesBlock from './MessagesBlock.vue'
 import MessageInput from './MessageInput.vue'
+import { mapGetters } from 'vuex'
 
 export default {
     name: "MessagesBlockWrapper",
@@ -19,6 +24,9 @@ export default {
         MessagesBlock,
         MessageInput,
     },
+    computed: {
+        ...mapGetters(['activeGroupName'])
+    }
 }
 </script>
 

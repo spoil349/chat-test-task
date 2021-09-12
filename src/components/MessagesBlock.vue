@@ -1,14 +1,17 @@
 <template>
     <div class="messages-block">
         <Message
-            v-for="item in 1"
-            :key="item"
+            v-for="message in activeMessages"
+            :key="message"
+            :thisMessage="message"
         />
+        <!-- <button @click="log"></button> -->
     </div>
 </template>
 
 <script>
 import Message from './Message.vue'
+import { mapGetters } from 'vuex'
 
 export default {
     name: "MessagesBlock",
@@ -16,9 +19,13 @@ export default {
         Message,
     },
     computed: {
+        ...mapGetters(['activeMessages']),
     },
     methods: {
-        
+        // log() {
+        //     console.log('this.activeMessages', this.activeMessages)
+        //     console.log('typeof this.activeMessages', typeof this.activeMessages)
+        // }
     },
 }
 </script>
