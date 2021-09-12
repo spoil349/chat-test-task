@@ -35,11 +35,12 @@ export default {
             }
             let activeGroup = this.activeGroupName;
             let activeGroupMessages = localStorage.getItem(activeGroup);
+            let id = (new Date()).getTime();
             let date = this.formatDate(new Date());
             if (activeGroupMessages) {
-                localStorage.setItem(activeGroup, `${activeGroupMessages}, {message:'${newGroupMessage}', date:'${date}'}`);
+                localStorage.setItem(activeGroup, `${activeGroupMessages}, {id:'${id}', message:'${newGroupMessage}', date:'${date}'}`);
             } else {
-                localStorage.setItem(activeGroup, `{message:'${newGroupMessage}', date:'${date}'}`);
+                localStorage.setItem(activeGroup, `{id:'${id}', message:'${newGroupMessage}', date:'${date}'}`);
             }
             this.changeActiveMessages(activeGroup);
             this.messageText = '';

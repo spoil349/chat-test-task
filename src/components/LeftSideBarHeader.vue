@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar-header">
         <div class="sidebar-header__avatar">
-            <img class="sidebar-header__image" src="../assets/images/avatar.jpg" alt="">
+            <img class="sidebar-header__image" src="../assets/images/avatar.jpg" alt="avatar">
         </div>
         <div class="sidebar-header__info">
             <p class="sidebar-header__info-name">David Hill</p>

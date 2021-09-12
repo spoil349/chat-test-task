@@ -25,6 +25,7 @@ export default {
     top: 0;
     left: 0;
     flex: 1 0 256px;
+    max-width: 256px;
     height: 100vh;
     padding: 15px;
     background: $darkGray;

@@ -15,16 +15,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
     name: "Message",
     props: {
         thisMessage: {
             type: Object,
         }
-    },
-    computed: {
-        ...mapGetters['activeMessages']
     },
 }
 </script>

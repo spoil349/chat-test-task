@@ -31,6 +31,4 @@ export default createStore({
       return state.activeMessages;
     }
   },
-  modules: {
-  }
 })

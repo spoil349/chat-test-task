@@ -2,7 +2,7 @@
     <div class="messages-block">
         <Message
             v-for="message in activeMessages"
-            :key="message"
+            :key="message.id"
             :thisMessage="message"
         />
     </div>
